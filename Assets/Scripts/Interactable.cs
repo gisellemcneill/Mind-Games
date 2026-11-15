@@ -23,7 +23,13 @@ public class Interactable : MonoBehaviour
         highlight.SetActive(false); // When the mouse stops hovering over the object, hide the highlight
     }
 
-    void OnMouseDown() {
-        dialogueManager.ShowDialogue(interactionMessage); // Displays the message on the dialogue box
+    // protected and virtual were added to allow inheritance and overriding
+    // protected allows the method to be accessed by derived classes, 
+    // while virtual allows derived classes to override the method's behavior
+    protected virtual void OnMouseDown() {
+
+        if(interactionMessage != null || interactionMessage != ""){
+            dialogueManager.ShowDialogue(interactionMessage); // Displays the message on the dialogue box
+        }  
     }
 }

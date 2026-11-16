@@ -1804,44 +1804,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 841363598653699943, guid: 2ad13efe0a0c24a2ba4fa1167bee858b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7812156087590568829}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ad13efe0a0c24a2ba4fa1167bee858b, type: 3}
 --- !u!4 &3559368112198869413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6601477333791563538, guid: 2ad13efe0a0c24a2ba4fa1167bee858b, type: 3}
   m_PrefabInstance: {fileID: 7707984258279095991}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4505829562568413969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6088777382869544358, guid: 2ad13efe0a0c24a2ba4fa1167bee858b, type: 3}
-  m_PrefabInstance: {fileID: 7707984258279095991}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7013614679208856016 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 841363598653699943, guid: 2ad13efe0a0c24a2ba4fa1167bee858b, type: 3}
-  m_PrefabInstance: {fileID: 7707984258279095991}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7812156087590568829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7013614679208856016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74fd9b3bc96c04f6e9826b71e0f19b9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PaperPickup
-  interactionMessage: ooo something good!
-  highlight: {fileID: 4505829562568413969}
-  dialogueManager: {fileID: 0}
-  paperViewer: {fileID: 0}
-  paperText: 3
-  paperImage: {fileID: 0}
 --- !u!1001 &7746681434558406591
 PrefabInstance:
   m_ObjectHideFlags: 0

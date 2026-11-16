@@ -11,6 +11,7 @@ public class PaperPickup : Interactable
 
     public NotebookManager notebookManagerObject; // The notebook manager object that manages the collected notes
     public string paperID; // The unique identifier for the paper object (used for notebook)
+    public string paperTitle; // The title of the paper object (used for notebook)
 
     protected override void OnMouseDown()
     {
@@ -19,7 +20,7 @@ public class PaperPickup : Interactable
         // Show the paper panel with the text and image
         paperViewer.ShowPaper(paperText, paperImage);
 
-        notebookManagerObject.AddNote(paperID, paperText);
+        notebookManagerObject.AddNote(paperID, paperText, paperTitle);
         gameObject.SetActive(false); // Hide the paper object after it has been picked up
     }
 }

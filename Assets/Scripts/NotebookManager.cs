@@ -7,10 +7,11 @@ public class NotebookManager : MonoBehaviour
     public GameObject notebookPanel; // The notebook panel that displays the collected notes
     public TMP_Text notebookText; // The text component of the notebook panel that displays the collected notes
     public TMP_Text pageCounterText; // The text component of the notebook panel that displays the page counter
+    public TMP_Text noteTitle; // The text component of the notebook panel that displays the title of the note
     
     public List<string> collectedNotes = new List<string>(); // A list to store the collected notes
     public List<string> collectedNoteIDs = new List<string>(); // A list to store the unique identifiers of the collected notes
-
+    public List<string> collectedNoteTitles = new List<string>(); // A list to store the titles of the collected notes
     private int currentPage; // The current page index of the notebook
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,12 +31,13 @@ public class NotebookManager : MonoBehaviour
         notebookPanel.SetActive(false); // Hide the notebook panel
     }
 
-    public void AddNote(string id, string noteText)
+    public void AddNote(string id, string noteText, string noteTitle)
     {
         if (!collectedNoteIDs.Contains(id))
         {
             collectedNotes.Add(noteText);
             collectedNoteIDs.Add(id);
+            collectedNoteTitles.Add(noteTitle);
             currentPage = collectedNotes.Count - 1; // Set the current page index to the last added note
             ShowCurrentNote(); // Show the newly added note
         }
@@ -56,6 +58,7 @@ public class NotebookManager : MonoBehaviour
         else
         {
             notebookText.text = collectedNotes[currentPage]; // Display the current note
+            noteTitle.text = collectedNoteTitles[currentPage]; // Display the title of the current note
             pageCounterText.text = (currentPage + 1) + "/" + collectedNotes.Count; // Update the page counter text
         }
     }

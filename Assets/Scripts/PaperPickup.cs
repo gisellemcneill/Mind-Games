@@ -16,11 +16,16 @@ public class PaperPickup : Interactable
     protected override void OnMouseDown()
     {
         base.OnMouseDown(); // Call the base class's OnMouseDown method to show the interaction message
-
+        
         // Show the paper panel with the text and image
         paperViewer.ShowPaper(paperText, paperImage);
-
         notebookManagerObject.AddNote(paperID, paperText, paperTitle);
+
+        HidePaper(); // Hide the paper object after it has been picked up
+    }
+
+    public void HidePaper()
+    {
         gameObject.SetActive(false); // Hide the paper object after it has been picked up
     }
 }

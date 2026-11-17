@@ -48,11 +48,21 @@ public class NotebookManager : MonoBehaviour
         return collectedNoteIDs.Contains(id);
     }
 
+    public void LoadNotes(List<string> notes, List<string> noteIDs, List<string> noteTitles)
+    {
+        collectedNotes = notes;
+        collectedNoteIDs = noteIDs;
+        collectedNoteTitles = noteTitles;
+        currentPage = 0; // Reset the current page index to the first note
+        ShowCurrentNote(); // Show the first note
+    }
+
     public void ShowCurrentNote()
     {
         if(collectedNotes.Count == 0)
         {
             notebookText.text = "No notes collected."; // Display a message if no notes have been collected
+            noteTitle.text = ""; // Clear the note title
             pageCounterText.text = ""; // Clear the page counter text
         }
         else

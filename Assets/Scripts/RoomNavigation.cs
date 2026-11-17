@@ -40,4 +40,11 @@ public class RoomNavigation : MonoBehaviour
         currentSide = (Side) (((int) currentSide + 3) % 4);
         ShowCurrentSide();
     }
+
+    // Sets the current side of the room to the specified side
+    // This method is used by the SaveManager to restore the room state when loading a saved game
+    public void setSide(Side side) {
+        currentSide = side;
+        ShowCurrentSide();
+    }
 }

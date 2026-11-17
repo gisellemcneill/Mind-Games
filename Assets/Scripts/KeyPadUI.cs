@@ -16,7 +16,8 @@ public class KeyPadUI : MonoBehaviour
 
     private string enteredCode = ""; // The code that the player has entered
 
-    public bool doorUnlocked = false; // A flag to track whether the door has been unlocked or not
+    //Used read only property, anyone can see this variable but only this class can modify it (JSON)
+    public bool doorUnlocked {get; private set;} = false; // A flag to track whether the door has been unlocked or not
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

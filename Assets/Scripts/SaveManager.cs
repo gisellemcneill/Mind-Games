@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 // A class to store the data that will be saved and loaded in JSON format
 [System.Serializable]
@@ -102,5 +103,22 @@ public class SaveManager : MonoBehaviour
                 paper.HidePaper(); // Call the HidePaper method to hide the note
             }
         }
+    }
+
+    public void ResetGame()
+    {
+        if(!File.Exists(saveFilePath))
+        {
+            Debug.LogWarning("Save file not found at " + saveFilePath);
+            return; // If the save file does not exist, do nothing
+        }
+        
+        File.Delete(saveFilePath); // Delete the save file
+        
+        // Log a message to the console indicating that the game has been reset
+        Debug.Log("Game reset, save file deleted from " + saveFilePath); 
+
+        // Reload the current scene to reset the game state
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

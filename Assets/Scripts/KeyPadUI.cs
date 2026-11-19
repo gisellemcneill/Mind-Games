@@ -19,11 +19,19 @@ public class KeyPadUI : MonoBehaviour
     //Used read only property, anyone can see this variable but only this class can modify it (JSON)
     public bool doorUnlocked {get; private set;} = false; // A flag to track whether the door has been unlocked or not
 
+    private int failedAttempts = 0; // Tracks the number of times the player failed to enter the correct code
+
+    private const int MAX_ATTEMPTS = 3; // The max number of attempts the player has to enter the incorrect code
+
+    private bool gameOver = false; // Tracks whether the game is over
+
+    public GameObject gameOverPanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         keypadPanel.SetActive(false); // Hide the keypad panel at the start
+        gameOverPanel.SetActive(false); // Hide the game over panel
     }
 
     // Open the keypad panel and display the entered code
@@ -50,9 +58,9 @@ public class KeyPadUI : MonoBehaviour
     // Add the entered digit to the result and check if the entered code matches the correct code
     public void enterDigit(string digit)
     {
-        if(doorUnlocked)
+        if(doorUnlocked || gameOver)
         {
-            return; // If the door has already been unlocked, do nothing
+            return; // If the door has already been unlocked or the game is over, do nothing
         }
 
         enteredCode += digit; // Add the entered digit to the code
@@ -74,9 +82,20 @@ public class KeyPadUI : MonoBehaviour
         }
         else
         {
+            failedAttempts++;
+            // If the player ran out of attempts to guess the code, end the game
+            if (failedAttempts >= MAX_ATTEMPTS) {
+                TriggerGameOver();
+            }
             displayText.text = "WRONG"; // Update the display text with the entered code
             enteredCode = ""; // Clear the entered code
         }
+    }
+
+    private void TriggerGameOver() {
+        gameOver = true;
+        keypadPanel.SetActive(false); // Hide the keypad panel
+        gameOverPanel.SetActive(true); // Show the game over panel
     }
 
     public void unlockDoor()

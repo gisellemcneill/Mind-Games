@@ -12,8 +12,13 @@ public class Reveal : Interactable
 
     protected override void OnMouseDown()
     {
+        if (OpeningScene.isPlaying)
+        {
+            return;
+        }
+        
         base.OnMouseDown(); // Call the base class's OnMouseDown method to show the interaction message
-
+        
         if (isRevealed)
         {
             return; // If the objects have already been revealed, do nothing

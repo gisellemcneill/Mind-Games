@@ -7,6 +7,11 @@ public class KeyPadTrigger : Interactable
 
     protected override void OnMouseDown()
     {
+        if (OpeningScene.isPlaying)
+        {
+            return;
+        }
+        
         base.OnMouseDown(); // Call the base class's OnMouseDown method to show the interaction message
         keypadUI.Open(); // Open the keypad UI when the object is clicked
         

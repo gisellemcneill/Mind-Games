@@ -15,6 +15,11 @@ public class PaperPickup : Interactable
 
     protected override void OnMouseDown()
     {
+        if (OpeningScene.isPlaying)
+        {
+            return;
+        }
+        
         base.OnMouseDown(); // Call the base class's OnMouseDown method to show the interaction message
         
         // Show the paper panel with the text and image

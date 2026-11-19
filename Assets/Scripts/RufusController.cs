@@ -11,10 +11,10 @@ public class RufusController : Interactable
     protected override void OnMouseDown() {
         // If Rufus has wisdom to give, display the wisdom
         if (currentHint < hints.Length) {
-            dialogueManager.ShowDialogue(hints[currentHint]);
+            dialogueManager.ShowDialogue(hints[currentHint], speakerPicture);
             currentHint++;
         } else {
-            dialogueManager.ShowDialogue("Meow?"); // Rufus ran out of hints
+            dialogueManager.ShowDialogue("Meow?", speakerPicture); // Rufus ran out of hints
         }
         MoveRufus();
     }

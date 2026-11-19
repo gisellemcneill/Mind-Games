@@ -5,6 +5,8 @@ public class Interactable : MonoBehaviour
     // The message that appears when the object is clicked
     public string interactionMessage;
 
+    public Sprite speakerPicture;
+
     // The highlight object
     public GameObject highlight;
 
@@ -16,7 +18,13 @@ public class Interactable : MonoBehaviour
     }
 
     void OnMouseEnter() {
-        highlight.SetActive(true); // When the mouse hovers over the object, show the highlight
+       
+       if (OpeningScene.isPlaying)
+        {
+            return;
+        }
+       
+       highlight.SetActive(true); // When the mouse hovers over the object, show the highlight
     }
 
     void OnMouseExit() {
@@ -28,8 +36,13 @@ public class Interactable : MonoBehaviour
     // while virtual allows derived classes to override the method's behavior
     protected virtual void OnMouseDown() {
 
+        if (OpeningScene.isPlaying)
+        {
+            return;
+        }
+
         if(interactionMessage != null || interactionMessage != ""){
-            dialogueManager.ShowDialogue(interactionMessage); // Displays the message on the dialogue box
+            dialogueManager.ShowDialogue(interactionMessage, speakerPicture); // Displays the message on the dialogue box
         }  
     }
 }

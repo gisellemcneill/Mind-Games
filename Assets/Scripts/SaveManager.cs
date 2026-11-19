@@ -12,6 +12,7 @@ public class SaveData
     public List<string> collectedNoteTitlesJSON = new List<string>(); // A list to store the titles of the collected notes
 
     public bool doorUnlocked; // A boolean to store the state of the door (locked/unlocked)
+    public bool introSeen; // boolean to store if the intro has been viewed
     public RoomNavigation.Side currentSide; // The current side of the room that the player is on
     public List<string> revealIDs = new List<string>(); // A list to store whcih reveals have happened in the room
 
@@ -23,6 +24,7 @@ public class SaveManager : MonoBehaviour
     public NotebookManager notebookManager; // A reference to the NotebookManager script
     public KeyPadUI keyPadUI; // A reference to the KeyPadUI script
     public RoomNavigation roomNavigation; // A reference to the RoomNavigation script
+    public OpeningScene openingScene; // reference to the OpeningScene script
     public List<Reveal> reveals; // A list of all the Reveals that have happened in the room
     public List<PaperPickup> paperPickedUp = new List<PaperPickup>(); // A list to store the papers that have been picked up by the player
 
@@ -44,6 +46,8 @@ public class SaveManager : MonoBehaviour
 
         // Save the state of the door from the KeyPadUI
         saveData.doorUnlocked = keyPadUI.doorUnlocked;
+
+        saveData.introSeen = openingScene.introSeen; 
 
         // Save the current side of the room from the RoomNavigation
         saveData.currentSide = roomNavigation.currentSide;
@@ -86,6 +90,11 @@ public class SaveManager : MonoBehaviour
             keyPadUI.unlockDoor(); // Call the unlockDoor method to unlock the door;
         }
 
+        if (saveData.introSeen)
+        {
+            openingScene.SkipIntro();
+        }
+
         // Load the current side of the room into the RoomNavigation
         roomNavigation.setSide(saveData.currentSide); // Call the setSide method to set the current side of the room
 
@@ -119,6 +128,12 @@ public class SaveManager : MonoBehaviour
         Debug.Log("Game reset, save file deleted from " + saveFilePath); 
 
         // Reload the current scene to reset the game state
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void RestartGame()
+    {
+        // Reload the current scene to restart the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

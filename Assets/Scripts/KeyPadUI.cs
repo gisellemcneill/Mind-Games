@@ -6,6 +6,8 @@ public class KeyPadUI : MonoBehaviour
 
     public GameObject keypadPanel; // The panel that contains the keypad UI
 
+    public AudioManager audioManager; //Reference to AudioManager script
+
     public TMP_Text displayText; // The text component that displays the entered code
 
     public GameObject[] doorUnlockedHideObjects; // The objects that will be hidden when the correct code is entered
@@ -102,6 +104,7 @@ public class KeyPadUI : MonoBehaviour
     {
         doorUnlocked = true; // Set the flag to true to indicate that the door has been unlocked
 
+        audioManager.PlayWin();
         displayText.text = "CORRECT"; // Update the display text with the unlocked message
 
 

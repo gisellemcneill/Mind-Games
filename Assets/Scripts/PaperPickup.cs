@@ -6,6 +6,7 @@ using UnityEngine;
 public class PaperPickup : Interactable
 {
     public PaperViewer paperViewer; // The panel that contains the paper object
+    public AudioManager audioManager;
     public string paperText; // The text component of the paper object
     public Sprite paperImage; // The image component of the paper object
 
@@ -23,6 +24,7 @@ public class PaperPickup : Interactable
         base.OnMouseDown(); // Call the base class's OnMouseDown method to show the interaction message
         
         // Show the paper panel with the text and image
+        audioManager.PlayClueFound();
         paperViewer.ShowPaper(paperText, paperImage);
         notebookManagerObject.AddNote(paperID, paperText, paperTitle);
 

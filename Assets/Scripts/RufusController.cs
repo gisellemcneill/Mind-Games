@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RufusController : Interactable
 {
+    public AudioManager audioManager; 
     public string[] hints; // The hints that Rufus gives the player
     public Transform[] possibleLocations; // The possible locations that Rufus can move to
 
@@ -10,8 +11,14 @@ public class RufusController : Interactable
 
     protected override void OnMouseDown() {
         // If Rufus has wisdom to give, display the wisdom
+        if (OpeningScene.isPlaying)
+        {
+            return;
+        }
+        
         if (currentHint < hints.Length) {
             dialogueManager.ShowDialogue(hints[currentHint], speakerPicture);
+            audioManager.PlayMeow();
             currentHint++;
         } else {
             dialogueManager.ShowDialogue("Meow?", speakerPicture); // Rufus ran out of hints
